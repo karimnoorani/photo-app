@@ -75,6 +75,8 @@ p{
 
 #rec_panel_img_1{
     border-radius: 50%;
+    height: 75px;
+    width: 75px;
 }
 
 #rec_top_div{
@@ -83,7 +85,7 @@ p{
     margin-top: 20px;
     margin-left: 20px;
     /*border: solid 1px black;*/
-    height: 100px;
+    height: auto;
 }
 
 #rec_username{
@@ -111,12 +113,15 @@ p{
 .rec_divs{
     display: flex;
     align-items: center;
-    height: 85px;
+    height: auto;
+    margin-bottom: 15px;
     /*border: solid 1px black;*/
 }
 
 .rec_panel_images{
     border-radius: 50%;
+    height: 50px;
+    width: 50px;
 }
 
 .rec_panel_text_div{
@@ -149,7 +154,8 @@ p{
     display: flex;
     justify-content: flex-start;
     height: 100px;
-    width: 100%;
+    width: calc(100% - 10px);
+    padding-left: 10px;
     background-color: white;
 }
 
@@ -157,7 +163,8 @@ p{
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 90px;
+    width: auto;
+    margin-right: 10px;
     justify-content: center;
     /*border: solid 1px black;*/
 }
@@ -167,6 +174,8 @@ p{
 }
 
 .stories > img{
+    height: 50px;
+    width: 50px;
     border-radius: 50%;
     border: solid 3px rgb(219, 219, 219);
 }
@@ -271,6 +280,14 @@ p{
     padding-left: 0;
 }
 
+.view_all_button{
+    background-color: white;
+    font-size: 16px;
+    width: 180px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+}
+
 .comments_box{
     width: calc(100% - 25px);
     height: auto;
@@ -286,7 +303,7 @@ p{
     display: inline;
 }
 
-.comments_box > p{
+.display_time{
     margin-top: 10px;
     margin-bottom: 10px;
     color:rgb(100, 100, 100);

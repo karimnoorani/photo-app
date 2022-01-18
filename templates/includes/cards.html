@@ -1,0 +1,46 @@
+{% for post in posts %}
+<div class="cards">
+    <div class="card_top_div">
+        <h2>{{post.get('user').get('username')}}</h2>
+        <i class="fas fa-ellipsis-h fa-2x"></i>
+    </div>
+    <img src="{{post.get('image_url')}}" alt="An image post for 
+    {{post.get('user').get('first_name')}} {{post.get('user').get('last_name')}}">
+    <div class="card_bottom_div">
+        <div class="icons_row">
+            <i class="far fa-heart fa-2x"></i>
+            <i class="far fa-comment fa-2x"></i>
+            <i class="far fa-paper-plane fa-2x"></i>
+            <div class="bookmark_div">
+                <i class="far fa-bookmark fa-2x"></i>
+            </div>
+        </div>
+        <p>{{post.get('likes')}} likes</p>
+        <div class="caption_box">
+            <p class="card_bottom_username">{{post.get('user').get('username')}}</p>
+            <p class="card_bottom_text">{{post.get('title')}}..</p>
+            <button>more</button>
+        </div>
+        {% if post.comments|length > 1 %}
+        <button class="view_all_button">View all {{post.comments|length}} comments</button>
+        {% endif %}
+        {% if post.comments|length > 0 %}
+        <div class="comments_box">
+            <div class="comment">
+                <p class="card_bottom_username">{{post.comments[0].get('user').get('username')}}</p>
+                <p class="card_bottom_text">{{post.comments[0].text}}</p>
+            </div>
+        </div>
+        {% endif %}
+        <p class="display_time">{{post.get('display_time')}}</p>
+        <div class="add_comments_box">
+            <i class="far fa-smile fa-2x"></i>
+            <input type="text" 
+                    class="textbox"
+                    placeholder="Add a comment..."
+                    title="Add a comment textbox"/>
+            <button>Post</button>
+        </div>
+    </div>
+</div>
+{% endfor %}

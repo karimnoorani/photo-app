@@ -1,0 +1,4 @@
+1. I added alt text to my images, created titles for my text forms, and inserted a 'lang' tag into my html.
+2. I think they are solvable. As computer recognition gets better, I'm sure we will be able to do more to help accessibility issues. Currently, I do not know if a perfect solution exists to solve all of the issues. 
+3. No, I think it would be too hard for someone to use because there would be dozens of elements on top of each other, which would make it impossible for someone to understand. 
+4. I think it is usable without images. It might look a little funny because the website concept revolves around photos, but it's possible to read just the text and captions. 

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Photo App</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='/static/styles.css'>
+    <link rel="preconnect" href="https://fonts.googleapis.com"> 
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+</head>
+<body>
+    {% include 'includes/navbar.html' %}
+    <div id="Lower_Box">
+        <div id="sc_panel">
+            {% include 'includes/stories.html' %}
+            {% include 'includes/cards.html' %}
+        </div>
+        {% include 'includes/suggestions.html' %}
+    </div>     
+</body>
+</html>
+
+<!-- ACCESSIBILITY QUESTION
+I would add a feature that allows any user to click on any picture and submit alt-text for that image.
+If there are too many submissions for a website to manually review, I would also add a community voting 
+feature that allows users upvote and downvote alt-text submissions (sort of like reddit) for an image. 
+The top-scoring submission at any time would become the alt-text for the image. 
+-->
