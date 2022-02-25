@@ -32,7 +32,10 @@ class FollowingListEndpoint(Resource):
         
         # Check that user id is an int
         if not isinstance(user_id, int):
-            return Response(json.dumps({'message': 'user id is not an integer'}), mimetype="application/json", status=400)
+            if user_id.isdigit():
+                user_id = int(user_id)
+            else: 
+                return Response(json.dumps({'message': 'user id is not an integer'}), mimetype="application/json", status=400)
         
         # Check that user id exists
         all_user_ids = User.query.all()
@@ -45,7 +48,9 @@ class FollowingListEndpoint(Resource):
         
         # Check that current user is not already following
         follows = Following.query.filter_by(user_id=self.current_user.id).order_by('following_id').all()
+        print(user_id)
         for follow in follows:
+            print(follow.following_id)
             if user_id == follow.following_id:
                 return Response(json.dumps({'message': 'No duplicate follows'}), mimetype="application/json", status=400)
         

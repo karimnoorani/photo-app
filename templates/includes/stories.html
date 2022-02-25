@@ -1,10 +1,8 @@
-<div id="stories_panel">
+<header class="stories">
     {% for story in stories %}
-    <div class="stories">
-        <img src="{{ story.get('user').get('thumb_url') }}"
-            alt="A story image for {{ story.get('user').get('first_name') }} 
-            {{ story.get('user').get('last_name') }}">
-        <p>{{ story.get('user').get('username') }}</p>
-    </div>
+        <div>
+            <img src="{{ story.get('user').get('thumb_url') }}" class="pic" alt="profile pic for {{ story.get('user').get('username') }}" />
+            <p>{{ story.get('user').get('username') }}</p>
+        </div>
     {% endfor %}
-</div>
+</header>
