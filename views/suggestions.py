@@ -1,6 +1,7 @@
 from flask import Response, request
 from flask_restful import Resource
 from models import User, Following
+import flask_jwt_extended
 from . import get_authorized_user_ids
 from tests import utils
 import json
@@ -10,6 +11,7 @@ class SuggestionsListEndpoint(Resource):
     def __init__(self, current_user):
         self.current_user = current_user
     
+    @flask_jwt_extended.jwt_required()
     def get(self):
         # Your code here:
         user_id = 1
@@ -37,5 +39,5 @@ def initialize_routes(api):
         SuggestionsListEndpoint, 
         '/api/suggestions', 
         '/api/suggestions/', 
-        resource_class_kwargs={'current_user': api.app.current_user}
+        resource_class_kwargs={'current_user': flask_jwt_extended.current_user}
     )

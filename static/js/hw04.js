@@ -10,7 +10,11 @@ const story2Html = story => {
 
 // fetch data from your API endpoint:
 const displayStories = () => {
-    fetch('/api/stories')
+    fetch('/api/stories', {
+        headers: {
+            'X-CSRF-TOKEN': getCookie('csrf_access_token')
+        }
+    })
         .then(response => response.json())
         .then(stories => {
             const html = stories.map(story2Html).join('\n');
@@ -46,7 +50,11 @@ const getAllComments = comments => {
 
 const showPostDetail = ev => {
     const postId = ev.currentTarget.dataset.postId;
-    fetch(`/api/posts/${postId}`)
+    fetch(`/api/posts/${postId}`, {
+        headers: {
+            'X-CSRF-TOKEN': getCookie('csrf_access_token')
+        }
+    })
         .then(response => response.json())
         .then(post => {
             let html = `
@@ -88,6 +96,7 @@ const postComment = ev => {
         method: "POST",
         headers: {
             'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': getCookie('csrf_access_token')
         },
         body: JSON.stringify(postData)
     })
@@ -189,6 +198,7 @@ const likeUnlike = ev => {
             method: "DELETE",
             headers: {
                 'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': getCookie('csrf_access_token')
             }
         })
         .then(response => response.json())
@@ -215,6 +225,7 @@ const likeUnlike = ev => {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': getCookie('csrf_access_token')
             },
             body: JSON.stringify({})
         })
@@ -250,6 +261,7 @@ const toggleBookmark = ev => {
             method: "DELETE",
             headers: {
                 'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': getCookie('csrf_access_token')
             }
         })
         .then(response => response.json())
@@ -267,6 +279,7 @@ const toggleBookmark = ev => {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': getCookie('csrf_access_token')
             },
             body: JSON.stringify({"post_id" : postID})
         })
@@ -334,7 +347,11 @@ const post2Html = post => {
 
 // fetch data from your API endpoint:
 const displayPosts = () => {
-    fetch('/api/posts')
+    fetch('/api/posts', {
+        headers: {
+            'X-CSRF-TOKEN': getCookie('csrf_access_token')
+        }
+    })
         .then(response => response.json())
         .then(posts => {
             const html = posts.map(post2Html).join('\n');
@@ -371,7 +388,11 @@ const suggestion2Html = user => {
 
 // fetch data from your API endpoint:    
 const displaySuggestions = () => {
-    fetch('/api/suggestions')
+    fetch('/api/suggestions', {
+        headers: {
+            'X-CSRF-TOKEN': getCookie('csrf_access_token')
+        }
+    })
         .then(response => response.json())
         .then(suggestedUsers => {
             document.querySelector('.suggestions > div').innerHTML = 
@@ -403,6 +424,7 @@ const follow = userId => {
         method: "POST",
         headers: {
             'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': getCookie('csrf_access_token')
         },
         body: JSON.stringify(postData)
     })
@@ -421,7 +443,10 @@ const follow = userId => {
 const unfollow = (followingId, userId) => {
     console.log('unfollow', followingId, userId);
     fetch(`/api/following/${followingId}`, {
-        method: "DELETE"
+        method: "DELETE",
+        headers: {
+            'X-CSRF-TOKEN': getCookie('csrf_access_token')
+        }
     })
     .then(response => response.json())
     .then(data => {
@@ -436,7 +461,11 @@ const unfollow = (followingId, userId) => {
 };
 
 const displayProfile = () => {
-    fetch('/api/profile')
+    fetch('/api/profile', {
+        headers: {
+            'X-CSRF-TOKEN': getCookie('csrf_access_token')
+        }
+    })
         .then(response => response.json())
         .then(profile => {
             const html = `
@@ -458,6 +487,22 @@ const initPage = () => {
     displayPosts();
     displaySuggestions();
     displayProfile();
+};
+
+const getCookie = key => {
+    let name = key + "=";
+    let decodedCookie = decodeURIComponent(document.cookie);
+    let ca = decodedCookie.split(';');
+    for (let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
 };
 
 // invoke init page to display stories:
