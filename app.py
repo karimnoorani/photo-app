@@ -21,6 +21,7 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config["JWT_SECRET_KEY"] = os.environ.get('JWT_SECRET')
 app.config["JWT_TOKEN_LOCATION"] = ["headers", "cookies", "json"]
 app.config["JWT_COOKIE_SECURE"] = False
+app.config['PROPAGATE_EXCEPTIONS'] = True 
 jwt = flask_jwt_extended.JWTManager(app)
 
 db.init_app(app)
